@@ -92,7 +92,7 @@ public class LoginForm extends JFrame implements ActionListener {
 		
 		
 		txtUserName.setText("19524691");
-		txtPassword.setText("admin");
+		txtPassword.setText("123456");
 		
 		btnExit.addActionListener(this);
 		btnLogin.addActionListener(this);
@@ -107,7 +107,13 @@ public class LoginForm extends JFrame implements ActionListener {
 		{
 			if(checkAccount(txtUserName.getText(), txtPassword.getText()))
 			{
-				new Homepage();
+				NhanVien nv = null;
+				try {
+					nv = new NhanVienDAO().getEmployeeByID(txtUserName.getText());
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
+				new frame_appControl(nv);
 				this.dispose();
 			}
 			else
